@@ -4,6 +4,10 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # project name and language
 project(recipe-03 LANGUAGES CXX)
 
+if(MSVC)
+# https://stackoverflow.com/questions/37128555/getting-cmake-to-build-shared-library-for-msvc
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
+endif(MSVC)
 # generate an object library from sources
 add_library(message-objs
   OBJECT
@@ -38,4 +42,5 @@ set_target_properties(message-static
 
 add_executable(hello-world hello-world.cpp)
 
-target_link_libraries(hello-world message-static)
+target_link_libraries(hello-world message-shared)
+# target_link_libraries(hello-world message-static)

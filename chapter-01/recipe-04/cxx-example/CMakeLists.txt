@@ -16,6 +16,7 @@ set(BUILD_SHARED_LIBS OFF)
 # list sources
 list(APPEND _sources Message.hpp Message.cpp)
 
+# 任何变量用有off,on,true,1,y,or non-zero等值都可以用来当判断变量
 if(USE_LIBRARY)
   # add_library will create a static library
   # since BUILD_SHARED_LIBS is OFF
