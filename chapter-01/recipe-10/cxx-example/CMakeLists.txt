@@ -40,6 +40,7 @@ endforeach()
 message(STATUS "Querying sources properties using plain syntax:")
 foreach(_source ${sources_with_lower_optimization})
   get_source_file_property(_flags ${_source} COMPILE_FLAGS)
+  # 似乎在MSVC上工作的不太好
   message(STATUS "Source ${_source} has the following extra COMPILE_FLAGS: ${_flags}")
 endforeach()
 

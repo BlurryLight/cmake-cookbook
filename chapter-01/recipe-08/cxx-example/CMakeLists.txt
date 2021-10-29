@@ -4,6 +4,10 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # project name and language
 project(recipe-08 LANGUAGES CXX)
 
+# msvc : /DWIN32 /D_WINDOWS /W3 /GR /EHsc 
+# /GR: enable RTTI  
+# /EHsc: enable exception
+# gcc: None
 message("C++ compiler flags: ${CMAKE_CXX_FLAGS}")
 
 list(APPEND flags "-fPIC" "-Wall")

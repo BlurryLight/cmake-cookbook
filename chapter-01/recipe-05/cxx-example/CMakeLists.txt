@@ -9,7 +9,9 @@ option(USE_LIBRARY "Compile sources into a library" OFF)
 
 message(STATUS "Compile sources into a library? ${USE_LIBRARY}")
 
+# this is must
 include(CMakeDependentOption)
+# 如果指定了USE_LIBRARY=OFF,另外两个选项是无效的
 
 # second option depends on the value of the first
 cmake_dependent_option(
