@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string>
 
+// #define COMPILER_NAME ""
+//
+//In Linux, the defined value will be overwritten by cmake
+//In Windows, msvc will throw a warning and the value will NOT be overwritten.
+
 std::string say_hello() {
 #ifdef IS_INTEL_CXX_COMPILER
   // only compiled when Intel compiler is selected

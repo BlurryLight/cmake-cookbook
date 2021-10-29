@@ -10,16 +10,22 @@ add_executable(hello-world hello-world.cpp)
 target_compile_definitions(hello-world PUBLIC "COMPILER_NAME=\"${CMAKE_CXX_COMPILER_ID}\"")
 
 # let the preprocessor know about the compiler vendor
-if(CMAKE_CXX_COMPILER_ID MATCHES Intel)
-  target_compile_definitions(hello-world PUBLIC "IS_INTEL_CXX_COMPILER")
-endif()
-if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
-  target_compile_definitions(hello-world PUBLIC "IS_GNU_CXX_COMPILER")
-endif()
-if(CMAKE_CXX_COMPILER_ID MATCHES PGI)
-  target_compile_definitions(hello-world PUBLIC "IS_PGI_CXX_COMPILER")
-endif()
-if(CMAKE_CXX_COMPILER_ID MATCHES XL)
-  target_compile_definitions(hello-world PUBLIC "IS_XL_CXX_COMPILER")
-endif()
+# if(CMAKE_CXX_COMPILER_ID MATCHES Intel)
+#   target_compile_definitions(hello-world PUBLIC "IS_INTEL_CXX_COMPILER")
+# endif()
+# if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
+#   target_compile_definitions(hello-world PUBLIC "IS_GNU_CXX_COMPILER")
+# endif()
+# # https://www.pgroup.com/products/index.htm  神奇的一个公司
+# if(CMAKE_CXX_COMPILER_ID MATCHES PGI)
+#   target_compile_definitions(hello-world PUBLIC "IS_PGI_CXX_COMPILER")
+# endif()
+# if(CMAKE_CXX_COMPILER_ID MATCHES XL)
+#   target_compile_definitions(hello-world PUBLIC "IS_XL_CXX_COMPILER")
+# endif()
 # etc ...
+
+# a more elegent way to do that
+target_compile_definitions(hello-world
+  PUBLIC "IS_${CMAKE_CXX_COMPILER_ID}_CXX_COMPILER"
+)

@@ -16,3 +16,13 @@ target_link_libraries(example
   PUBLIC
     OpenMP::OpenMP_CXX
   )
+
+include(CMakePrintHelpers)
+cmake_print_properties(
+  TARGETS
+    OpenMP::OpenMP_CXX
+  PROPERTIES
+    INTERFACE_COMPILE_OPTIONS
+    INTERFACE_COMPILE_DEFINITIONS
+    INTERFACE_COMPILE_LIBRARIES
+)

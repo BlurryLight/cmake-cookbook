@@ -18,6 +18,7 @@ else()
   set(_ZeroMQ_ROOT "${ZeroMQ_ROOT}")
 endif()
 
+# if find the var is written
 find_path(ZeroMQ_INCLUDE_DIRS NAMES zmq.h HINTS ${_ZeroMQ_ROOT}/include)
 
 if(ZeroMQ_INCLUDE_DIRS)
@@ -48,7 +49,7 @@ if(ZeroMQ_INCLUDE_DIRS)
   if(NOT ${CMAKE_C_PLATFORM_ID} STREQUAL "Windows")
     find_library(ZeroMQ_LIBRARIES 
         NAMES 
-          zmq 
+          zmq  # find libzmp.so in non-windows
         HINTS 
           ${_ZeroMQ_ROOT}/lib
           ${_ZeroMQ_ROOT}/lib/x86_64-linux-gnu
@@ -70,6 +71,8 @@ endif()
 
 include(FindPackageHandleStandardArgs)
 
+
+# this function will set ZeroMQ_FOUND when all requirements are satisfied
 find_package_handle_standard_args(ZeroMQ
   FOUND_VAR
     ZeroMQ_FOUND

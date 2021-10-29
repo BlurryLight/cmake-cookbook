@@ -9,7 +9,10 @@ set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 find_package(PythonInterp REQUIRED)
-find_package(PythonLibs ${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR} EXACT REQUIRED)
+
+# EXACT keyword is recommanded to avoid unexpected behaviour
+find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT REQUIRED)
+# find_package(PythonLibs ${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR} EXACT REQUIRED)
 
 add_executable(hello-embedded-python hello-embedded-python.c)
 

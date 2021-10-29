@@ -16,6 +16,8 @@ else()
   message(STATUS "Target is 32 bits")
 endif()
 
+# 前面那个是编译器
+# 这个是CPU
 # let the preprocessor know about the host processor architecture
 if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "i386")
   message(STATUS "i386 architecture detected")
@@ -23,10 +25,13 @@ elseif(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "i686")
   message(STATUS "i686 architecture detected")
 elseif(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "x86_64")
   message(STATUS "x86_64 architecture detected")
+elseif(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "AMD64")
+  message(STATUS "AMD64 architecture detected")
 else()
   message(STATUS "host processor architecture is unknown")
 endif()
 
+# 奇怪，windows上是AMD64,wsl上是x86_64
 target_compile_definitions(arch-dependent
   PUBLIC "ARCHITECTURE=${CMAKE_HOST_SYSTEM_PROCESSOR}"
   )

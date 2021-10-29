@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP REQUIRED)
 
+# config mode
 find_package(Eigen3 3.3 REQUIRED CONFIG)
 
 if(TARGET Eigen3::Eigen)

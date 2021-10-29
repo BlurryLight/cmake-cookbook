@@ -10,7 +10,10 @@ find_package(Eigen3 3.3 REQUIRED CONFIG)
 
 include(CheckCXXCompilerFlag)
 
+# gcc flag
+#which tells the compiler to tune generated code for the micro-architecture and ISA extensions of the host CPU. 
 check_cxx_compiler_flag("-march=native" _march_native_works)
+#ICC flag
 check_cxx_compiler_flag("-xHost" _xhost_works)
 
 set(_CXX_FLAGS)

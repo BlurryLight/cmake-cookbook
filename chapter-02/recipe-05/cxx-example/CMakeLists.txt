@@ -16,6 +16,7 @@ target_sources(processor-info
 # and its include directories
 target_include_directories(processor-info
   PRIVATE
+  # the config.h will be generated there
     ${PROJECT_BINARY_DIR}
   )
 
@@ -43,7 +44,13 @@ foreach(key
     OS_VERSION
     OS_PLATFORM
   )
+  # 把查询到的结果存到_HAS_SSE_里
+  # 下一行的configure_file 会从cache里查_HAS_SSE_这个值
   cmake_host_system_information(RESULT _${key} QUERY ${key})
 endforeach()
 
+# 常用的flags
+# COPYONLY Copy the file without replacing any variable references or other content. This option may not be used with NEWLINE_STYLE.
+# @ONLY 只替换@包围的变量，而不替换${}这样的变量
+# 推荐使用#cmakedefine 如果值被定义了，就会变成define，如果没有就会被注释掉，避免空值宏
 configure_file(config.h.in config.h @ONLY)
