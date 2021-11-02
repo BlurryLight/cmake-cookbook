@@ -9,6 +9,8 @@ find_package(PythonInterp REQUIRED)
 
 # define tests
 enable_testing()
+# 第一次运行的时候会顺序执行
+# 第二次运行的时候如果允许多核会从最多的任务开始运行
 
 add_test(a ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/a.py)
 add_test(b ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/b.py)

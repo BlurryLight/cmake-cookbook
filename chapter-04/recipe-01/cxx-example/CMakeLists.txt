@@ -22,6 +22,7 @@ target_link_libraries(sum_up sum_integers)
 # testing binary
 add_executable(cpp_test test.cpp)
 target_link_libraries(cpp_test sum_integers)
+# message($<TARGET_FILE:sum_up>)
 
 # enable testing functionality
 enable_testing()

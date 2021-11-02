@@ -36,7 +36,10 @@ if(ENABLE_UNIT_TESTS)
   )
 
   FetchContent_GetProperties(googletest)
+  # it will define googletest_SOURCE_DIR and googletest_BINARY_DIR
 
+
+  # if it is not fetched,then we fetch it and compile it
   if(NOT googletest_POPULATED)
     FetchContent_Populate(googletest)
 
@@ -61,7 +64,7 @@ if(ENABLE_UNIT_TESTS)
           )
       endforeach()
     endif()
-  endif()
+  endif(NOT googletest_POPULATED)
 
   add_executable(cpp_test "")
 
@@ -76,10 +79,17 @@ if(ENABLE_UNIT_TESTS)
       gtest_main
     )
 
-  enable_testing()
+  # enable_testing()
 
-  add_test(
-    NAME google_test
-    COMMAND $<TARGET_FILE:cpp_test>
-    )
+  # add_test(
+  #   NAME google_test
+  #   COMMAND $<TARGET_FILE:cpp_test>
+  #   )
+
+  include(GoogleTest)
+  gtest_add_tests(
+    TARGET cpp_test
+    # auto means it will scan all files of the target
+    AUTO
+  )
 endif()

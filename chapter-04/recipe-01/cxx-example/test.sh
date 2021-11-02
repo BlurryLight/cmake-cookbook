@@ -4,7 +4,7 @@ EXECUTABLE=$1
 
 OUTPUT=$($EXECUTABLE 1 2 3 4)
 
-if [ "$OUTPUT" = "10" ]
+if [ "$OUTPUT" = "11" ]
 then
     exit 0
 else

@@ -17,6 +17,7 @@ find_program(MEMORYCHECK_COMMAND NAMES valgrind)
 set(MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
 
 # add memcheck test action
+# this include will enbale memcheck
 include(CTest)
 
 # define tests
