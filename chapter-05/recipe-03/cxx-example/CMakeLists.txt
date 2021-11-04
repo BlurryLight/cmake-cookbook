@@ -23,6 +23,7 @@ add_custom_command(
   COMMAND
     ${CMAKE_COMMAND} -E tar xzf ${CMAKE_CURRENT_SOURCE_DIR}/wrap_BLAS_LAPACK.tar.gz
   COMMAND
+    # update the timestaps
     ${CMAKE_COMMAND} -E touch ${wrap_BLAS_LAPACK_sources}
   WORKING_DIRECTORY
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -32,7 +33,6 @@ add_custom_command(
     "Unpacking C++ wrappers for BLAS/LAPACK"
   VERBATIM
   )
-
 add_library(math "")
 
 target_sources(math

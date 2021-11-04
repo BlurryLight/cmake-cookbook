@@ -13,7 +13,7 @@ if(OpenMP_FOUND)
   set(_scratch_dir ${CMAKE_CURRENT_BINARY_DIR}/omp_try_compile)
 
   try_compile(
-    omp_taskloop_test_1
+    omp_taskloop_test_1 # its a boolean value 
     ${_scratch_dir}
     SOURCES
       ${CMAKE_CURRENT_SOURCE_DIR}/taskloop.cpp

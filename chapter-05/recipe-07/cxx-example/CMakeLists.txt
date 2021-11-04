@@ -73,6 +73,8 @@ set(CMAKE_REQUIRED_FLAGS ${UBSAN_FLAGS})
 check_cxx_compiler_flag(${UBSAN_FLAGS} ubsan_works)
 unset(CMAKE_REQUIRED_FLAGS)
 if(ubsan_works)
+  # 在一门设计失败的语言里，cmake的list是用;分割的字符串。
+  # 所以把一个字符串的空格用;替换后，这个字符串就转到了list类型
   string(REPLACE " " ";" _ubsan_flags ${UBSAN_FLAGS})
   add_executable(ubsan-example ubsan-example.cpp)
   target_compile_options(ubsan-example
