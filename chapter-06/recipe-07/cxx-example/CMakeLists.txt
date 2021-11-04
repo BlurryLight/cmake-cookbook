@@ -21,8 +21,9 @@ target_include_directories(example
 add_custom_command(
   OUTPUT
     ${CMAKE_CURRENT_BINARY_DIR}/generated/version.hpp
-    ALL
+    ALL # the All target will also execute the commmand
   COMMAND
+    #   -P <file>                    = Process script mode.
     ${CMAKE_COMMAND} -D TARGET_DIR=${CMAKE_CURRENT_BINARY_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/git-hash.cmake
   WORKING_DIRECTORY
     ${CMAKE_CURRENT_SOURCE_DIR}

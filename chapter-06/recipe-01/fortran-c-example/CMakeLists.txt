@@ -5,7 +5,7 @@ project(recipe-01 LANGUAGES Fortran C)
 # Get username
 execute_process(
   COMMAND
-    whoami
+    whoami # cross-platform
   TIMEOUT
     1
   OUTPUT_VARIABLE
