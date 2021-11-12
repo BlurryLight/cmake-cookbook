@@ -1,5 +1,5 @@
 function(add_catch_test)
-  set(options)
+  set(options OPTIONAL) # options是定义布尔变量，见https://cmake.org/cmake/help/latest/command/cmake_parse_arguments.html#command:cmake_parse_arguments
   set(oneValueArgs NAME COST)
   set(multiValueArgs LABELS DEPENDS REFERENCE_FILES)
   cmake_parse_arguments(add_catch_test
@@ -10,6 +10,7 @@ function(add_catch_test)
     )
 
   message(STATUS "defining a test ...")
+  message(STATUS "    OPTIONAL: ${add_catch_test_OPTIONAL}")
   message(STATUS "    NAME: ${add_catch_test_NAME}")
   message(STATUS "    LABELS: ${add_catch_test_LABELS}")
   message(STATUS "    COST: ${add_catch_test_COST}")

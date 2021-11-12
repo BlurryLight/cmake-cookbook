@@ -37,7 +37,11 @@ function(set_compiler_flag _result _lang)
   # loop over all flags, try to find the first which works
   foreach(flag IN ITEMS ${_list_of_flags})
 
-    unset(_flag_works CACHE)
+  #https://cmake.org/cmake/help/latest/module/CheckCXXCompilerFlag.html
+  # check the flag is accept and store the result into the val
+
+    set(CMAKE_REQUIRED_FLAGS ${flag}) # make santilizer happy
+    unset(_flag_works CACHE) #femove cache
     if(_lang STREQUAL "C")
       check_c_compiler_flag("${flag}" _flag_works)
     elseif(_lang STREQUAL "CXX")
@@ -47,11 +51,13 @@ function(set_compiler_flag _result _lang)
     else()
       message(FATAL_ERROR "Unknown language in set_compiler_flag: ${_lang}")
     endif()
+    unset(CMAKE_REQUIRED_FLAGS)
 
     # if the flag works, use it, and exit
     # otherwise try next flag
     if(_flag_works)
-      set(${_result} "${flag}" PARENT_SCOPE)
+      string(REPLACE " " ";" _flag ${flag}) # allow array works better
+      set(${_result} "${_flag}" PARENT_SCOPE) # we are modifying a vairable outside the scope
       set(_flag_found TRUE)
       break()
     endif()

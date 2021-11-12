@@ -24,4 +24,12 @@ set_compiler_flag(
   "/RTCcsu" # this should work with MSVC
   )
 
+
 message(STATUS "working CXX compile flag: ${working_compile_flag}")
+
+set_compiler_flag(
+  working_compile_flag CXX REQUIRED
+  "-fsanitize=foo -fno-omit-frame-pointer" # should be true
+  "-fsanitize=address -fno-omit-frame-pointer" # should be true
+  )
+message(STATUS "working CXX santilizer flag: ${working_compile_flag}")

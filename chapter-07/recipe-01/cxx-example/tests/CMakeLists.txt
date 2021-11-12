@@ -1,11 +1,12 @@
 add_executable(cpp_test test.cpp)
 target_link_libraries(cpp_test sum_integers)
 
+# macro可以捕获外面的变量？
 macro(add_catch_test _name _cost)
   math(EXPR num_macro_calls "${num_macro_calls} + 1")
   message(STATUS "add_catch_test called with ${ARGC} arguments: ${ARGV}")
 
-  set(_argn "${ARGN}")
+  set(_argn "${ARGN}") # ARGN is the parameters past the expected number
   if(_argn)
     message(STATUS "oops - macro received argument(s) we did not expect: ${ARGN}")
   endif()

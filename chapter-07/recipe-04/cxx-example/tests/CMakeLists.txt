@@ -14,6 +14,7 @@ add_catch_test(
   )
 
 add_catch_test(
+  OPTIONAL
   NAME
     long
   LABELS
