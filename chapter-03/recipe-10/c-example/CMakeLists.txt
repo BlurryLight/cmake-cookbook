@@ -23,13 +23,14 @@ target_link_libraries(hwserver
   )
 
 add_executable(hwclient hwclient.c)
+target_link_libraries(hwclient PRIVATE ZeroMQ::ZeroMQ)
 
-target_include_directories(hwclient
-  PRIVATE
-    ${ZeroMQ_INCLUDE_DIRS}
-  )
-
-target_link_libraries(hwclient
-  PRIVATE
-    ${ZeroMQ_LIBRARIES}
-  )
+# target_include_directories(hwclient
+#   PRIVATE
+#     ${ZeroMQ_INCLUDE_DIRS}
+#   )
+#
+# target_link_libraries(hwclient
+#   PRIVATE
+#     ${ZeroMQ_LIBRARIES}
+#   )

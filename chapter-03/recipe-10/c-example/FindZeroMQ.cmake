@@ -13,8 +13,12 @@ if(NOT ZeroMQ_ROOT)
 endif()
 
 if(NOT ZeroMQ_ROOT)
+  # findpath会在系统路径里找 /usr
+  # 会在/usr/include/zmq.h找到所要的文件，所以/usr就会是ZeroMQ_ROOT
   find_path(_ZeroMQ_ROOT NAMES include/zmq.h)
+  find_path(_ZeroMQ_ROOT NAMES zmq.h)
 else()
+  # 如果没有从cmake的默认目录找到，就找环境变量${ENV{ZeroMQ_ROOT}
   set(_ZeroMQ_ROOT "${ZeroMQ_ROOT}")
 endif()
 
@@ -73,6 +77,9 @@ include(FindPackageHandleStandardArgs)
 
 
 # this function will set ZeroMQ_FOUND when all requirements are satisfied
+# 这个函数会正确处理find_package时所需要的REQUIRED,QUIET，VERSION等相关FLAG
+# 并且在一切正常的时候设置ZeroMQ_FOUND变量
+# https://cmake.org/cmake/help/latest/module/FindPackageHandleStandardArgs.html
 find_package_handle_standard_args(ZeroMQ
   FOUND_VAR
     ZeroMQ_FOUND
@@ -82,3 +89,19 @@ find_package_handle_standard_args(ZeroMQ
   VERSION_VAR
     ZeroMQ_VERSION
   )
+
+# Optional
+# 添加target
+if(ZeroMQ_FOUND)
+    #定义target
+    if(NOT TARGET ZeroMQ)
+        # https://www.jianshu.com/p/3d90d05ed7cd?utm_source=pocket_mylist
+        add_library(ZeroMQ UNKNOWN IMPORTED GLOBAL)
+        set_target_properties(ZeroMQ PROPERTIES
+            INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${ZeroMQ_INCLUDE_DIRS}}"
+            IMPORTED_LOCATION "${ZeroMQ_LIBRARIES}"
+            )
+        add_library(ZeroMQ::ZeroMQ ALIAS ZeroMQ)
+    endif()
+endif(ZeroMQ_FOUND)
+
